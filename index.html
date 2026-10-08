@@ -3578,7 +3578,7 @@ async function downloadAppCopy() {
     const seed = `<script type="application/json" id="bq-seed" data-app>${JSON.stringify(b).replace(/</g, "\\u003c")}<\/script>`;
     const at = parts.findIndex(x => /^<script(?![^>]*application\/json)/i.test(x));
     parts.splice(at < 0 ? parts.length : at, 0, seed);
-    const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}</style></head><body>\n${parts.join("\n")}\n<script>if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(console.warn));</script></body></html>`;
+    const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}</style></head><body>\n${parts.join("\n")}\n<script>if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(console.warn));<\/script></body></html>`;
     await saveFile(`${slug(S.settings.club)}_app_${todayISO()}.html`, new Blob([html], { type: "text/html" }));
   } catch { showToast("Couldn't build the app file. Try again."); }
 }
